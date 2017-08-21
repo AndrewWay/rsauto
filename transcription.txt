@@ -1,0 +1,16 @@
+x: 200 y: 200
+
+MATCH: 20
+ 
+x: 200 y: 250
+Ualk here
+MATCH: 25
+ 
+x: 200 y: 300
+Ualk here
+MATCH: 25
+ 
+x: 200 y: 350
+Smelt Furnace I 2 more optit
+MATCH: 100
+ 
