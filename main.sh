@@ -29,14 +29,26 @@ rm $TRANSCRIPT
 #-INTERFACE COORDINATES
 
 #--SMITHING
+
+#---UI COORDINATES
 BRONZE_X=118
-BRONZE_Y=639
+BRONZE_Y=640
+IRON_X=222
+IRON_Y=640
+
+#---PARAMETERS
+TIME_PER_BAR=3 #seconds
 
 #-PROCESS
-smithing="BRONZE"
+smithing="IRON"
+
 
 #-MATCHING
 MATCH_MINIMUM=79
+
+#DATA
+INVENTORY='' #make array
+
 main(){
 
 local x_intervals=$(divide $(subtract $MAX_X $INITIAL_X ) $DELTA_X)
@@ -96,19 +108,33 @@ pause(){
   done
 }
 smelt(){
-  sleep 5
+ # sleep 5
   xdotool click 1
   local bar_icon_x=0
   local bar_icon_y=0
   if [ "$smithing" == "BRONZE" ];then
     bar_icon_x=$BRONZE_X
     bar_icon_y=$BRONZE_Y
+  elif [ "$smithing" == "IRON" ];then
+    bar_icon_x=$IRON_X
+    bar_icon_y=$IRON_Y  
   fi 
+  sleep 2 # wait until you arrive at the furnace
   #Move cursor to the desired bar
   xdotool mousemove $bar_icon_x $bar_icon_y
-  xdotool click 2
-  xdotool mousemove 115 699 #coordinates for Smelt x number of bars opt
+  xdotool click 3
+  xdotool mousemove $bar_icon_x 700 #coordinates for Smelt x number of bars opt
+  sleep 1
+  xdotool click 1
+  sleep 1
 
+  local bar_quantity=28 # TODO check inventory array
+
+  xdotool type 28
+  xdotool key KP_Enter
+  local sleep_duration=$(multiply 28 $TIME_PER_BAR)
+  echo "smelting..." >&2
+  sleep $sleep_duration
   pause
 }
 stringMatch(){

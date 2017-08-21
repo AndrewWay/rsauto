@@ -7,10 +7,6 @@ Ualk here
 MATCH: 25
  
 x: 200 y: 300
-Ualk here
-MATCH: 25
- 
-x: 200 y: 350
-Smelt Furnace I 2 more optit
+Smelt Furnace f 2 more optio
 MATCH: 100
  
